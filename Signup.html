@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+
+    <link rel="stylesheet" href="Home.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="nav-bar">
+
+            <a href="Home.html" class="button-2">
+                Random Color Generator
+            </a>
+
+            <div class="mid-nav">
+
+                <a href="Login.html" class="button-2 button-4">Login</a>
+
+                <a href="Signup.html" class="button-2 button-4" style="opacity: 1;">Signup</a>
+
+            </div>
+
+            <a href="Signup.html" class="button-3" style="opacity: 1; ">
+                Account
+            </a>
+
+        </nav>
+
+    </header>
+
+    <section class="section" id="section">
+
+        <div class="section-item-1">
+            Sign Up
+        </div>
+
+
+        <div style="display: grid; justify-content: center;">
+
+            <form id="contactForm">
+                <label>First Name</label>
+                <input type="text" id="FirstName" placeholder="Your first name.." required>
+
+                <label>Last Name</label>
+                <input type="text" id="LastName" placeholder="Your last name.." required>
+
+                <label>Email</label>
+                <input type="email" id="Email" placeholder="Your email.." required>
+
+                <label>Password</label>
+                <input type="password" id="Password" placeholder="Your password.." required>
+
+                <label>Confirm Password</label>
+                <input type="password" id="ConfirmPassword" placeholder="Confirm your password.." required>
+
+                <button type="submit" id="Submit" value="Register"> Register </button>
+
+                <p class="alert">Registration Successful</p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2A9XTtWGicb9-F0C0M9exEp5qoIoS6w4",
+            authDomain: "this-is-my-last-try.firebaseapp.com",
+            databaseURL: "https://this-is-my-last-try-default-rtdb.firebaseio.com",
+            projectId: "this-is-my-last-try",
+            storageBucket: "this-is-my-last-try.appspot.com",
+            messagingSenderId: "1096558397404",
+            appId: "1:1096558397404:web:9f6e614d473397315e7119"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        let FirstName = document.getElementById("FirstName");
+        let LastName = document.getElementById("LastName");
+        let Email = document.getElementById("Email");
+        let Password = document.getElementById('Password');
+        let ContactForm = document.getElementById("contactForm");
+
+        let RegisterUser = evt => {
+            evt.preventDefault();
+
+            createUserWithEmailAndPassword(auth, Email.value, Password.value)
+                .then((credantials) => {
+                    window.location.href = "Login.html";
+                })
+                .catch((error) => {
+                    alert(error.message);
+                    console.log(error.code);
+                    console.log(error.message);
+                })       
+        }
+
+        ContactForm.addEventListener('submit', RegisterUser);
+
+    </script>
+
+</body>
+
+<script src="Home.js"></script>
+
+</html>

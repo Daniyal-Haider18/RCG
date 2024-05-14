@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="Home.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="nav-bar">
+
+            <a href="Home.html" class="button-2">
+                Random Color Generator
+            </a>
+
+            <div class="mid-nav">
+
+                <a href="Login.html" class="button-2 button-4" style="opacity: 1;">Login</a>
+
+                <a href="Signup.html" class="button-2 button-4">Signup</a>
+
+            </div>
+
+            <a href="Signup.html" class="button-3" style="opacity: 1; ">
+                Account
+            </a>
+
+        </nav>
+
+    </header>
+
+    <section class="section" id="section">
+
+        <div class="section-item-1">
+            Login
+        </div>
+
+
+        <div style="display: grid; justify-content: center;">
+
+            <form id="contactForm" style="height: 200px;">
+                <label>Email</label>
+                <input type="email" id="Email" placeholder="Your email.." required>
+
+                <label>Password</label>
+                <input type="password" id="Password" placeholder="Your password.." required>
+
+                <button type="submit" id="Submit" value="Register"> Register </button>
+
+                <p class="alert">Registration Successful</p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2A9XTtWGicb9-F0C0M9exEp5qoIoS6w4",
+            authDomain: "this-is-my-last-try.firebaseapp.com",
+            databaseURL: "https://this-is-my-last-try-default-rtdb.firebaseio.com",
+            projectId: "this-is-my-last-try",
+            storageBucket: "this-is-my-last-try.appspot.com",
+            messagingSenderId: "1096558397404",
+            appId: "1:1096558397404:web:9f6e614d473397315e7119"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+        const dbref = ref(db);
+
+        let FirstName = document.getElementById("FirstName");
+        let LastName = document.getElementById("LastName");
+        let Email = document.getElementById("Email");
+        let Password = document.getElementById("Password");
+        let ConfirmPassword = document.getElementById("ConfirmPassword");
+        let ContactForm = document.getElementById("contactForm");
+
+        let LoginUser = evt => {
+            evt.preventDefault();
+
+            signInWithEmailAndPassword(auth, Email.value, Password.value)
+                .then((credantials) => {
+                    window.location.href = "Home.html";
+                })
+                .catch((error) => {
+                    document.getElementById('alert').innerText = "Invalid Email or Password";
+                })
+        }
+
+        ContactForm.addEventListener('submit', LoginUser);
+
+    </script>
+
+</body>
+
+</html>

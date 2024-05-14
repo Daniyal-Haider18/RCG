@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="Home.css"> 
+
+</head>
+
+<body>
+
+    <section class="main">
+
+        <nav class="nav-bar" style="grid-template-columns: 32% 38% 27% 3%; margin-top: 20px;">
+
+            <a href="Home.html" class="button-2" style="opacity: 1;">
+                Random Color Generator
+            </a>
+
+            <div class="mid-nav" style="grid-template-columns: 26% 37% 32%; column-gap: 1.1%;">
+
+                <a href="Home.html" class="button-2 button-4" style="opacity: 1; width: 100%;">Background Color</a>
+                
+                <a href="Gradient.html" class="button-2 button-4" style="width: 100%;">Background Gradient Color</a>
+                
+                <a href="Button_Color.html" class="button-2 button-4" style="width: 100%;"> Button Background Color</a>
+
+            </div>
+
+            <a href="Signup.html" class="button-3">
+                Account
+            </a>
+
+        </nav>
+
+
+        <h3 id="Color-Code" style="display: grid; justify-content: center; align-content: end; font-size: 30px;"></h3>
+
+
+        <button id="color" class="button" type="button">Change background Color</button>  
+
+
+    </section>
+
+
+</body>
+
+<script>
+
+    const colour = document.querySelector("#color")
+
+    const rndmcolor = () => {
+
+        let rgb = [1, 1, 1];
+        rgb[0] = Math.floor(Math.random() * 255);
+        rgb[1] = Math.floor(Math.random() * 255);
+        rgb[2] = Math.floor(Math.random() * 255);
+
+        return rgb;
+    }
+
+    colour.addEventListener('click', function () {
+        const tempcolor = rndmcolor();
+        const newcolor = `rgb(${tempcolor[0]},${tempcolor[1]},${tempcolor[2]})`;
+        document.body.style.background = newcolor;
+        document.getElementById('Color-Code').innerText = `THE BACKGROUND COLOR IS: ${newcolor}`;
+    });
+
+</script>
+
+</html>
